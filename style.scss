@@ -1,0 +1,147 @@
+/* Variables */
+:root {
+    --bg-color-chevron: #58718d;
+    --chevron-border-color: #f7f6f3;
+}
+
+.chevrons-container {
+    vertical-align: top;
+    box-sizing: border-box;
+    padding-top: 5px;
+    padding-left: 5px;
+    height: auto; /* Allow height to adjust automatically */
+}
+
+.chevrons {
+    list-style: none;
+    overflow: hidden;
+    font-size: 1rem; /* Use rem for better scalability */
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap */
+    gap: 1rem; /* Add spacing between items */
+    padding: 0;
+    margin: 0;
+}
+
+.chevrons li {
+    text-align: center;
+    flex: 1 1 auto; /* Allow items to grow and shrink as needed */
+
+    &:first-child a {
+        padding-left: 25px !important;
+    }
+
+    &:last-child a.active::after {
+        border-top: 50px solid #155C93;
+        border-bottom: 50px solid #155C93;
+        border-left: 30px solid #155C93;
+    }
+
+    &:last-child a.inactive::after {
+        border-top: 50px solid lightgrey;
+        border-bottom: 50px solid lightgrey;
+        border-left: 30px solid lightgray;
+    }
+}
+
+.chevrons a {
+    color: #fff;
+    text-decoration: none;
+    padding: 0.5rem 1rem; /* Adjust padding for better scalability */
+    background: #155093;
+    position: relative;
+    display: block;
+    outline: none;
+
+    &:hover {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    &.active {
+        background: #155C93 !important;
+    }
+
+    &.inactive {
+        color: black;
+        background: lightgray !important;
+        &::after {
+            border-left: 30px solid lightgray !important;
+        }
+    }
+
+    &.disabled {
+        color: #fff;
+        background: #cccccc !important;
+        pointer-events: none;
+        cursor: not-allowed;
+        &::after {
+            border-left: 30px solid #ccccee !important;
+        }
+    }
+
+    &::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 50px solid transparent;
+        border-bottom: 50px solid transparent;
+        border-left: 30px solid var(--bg-color-chevron);
+        position: absolute;
+        top: 50%;
+        margin-top: -50px;
+        left: 100%;
+        z-index: 1;
+    }
+
+    &::before {
+        content: "";
+        width: 0;
+        height: 0;
+        border-top: 50px solid transparent;
+        border-bottom: 50px solid transparent;
+        border-left: 30px solid var(--chevron-border-color);
+        position: absolute;
+        top: 50%;
+        margin-top: -50px;
+        margin-left: 5px;
+        left: 100%;
+        z-index: 1;
+    }
+}
+
+.job-title {
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1.5rem; /* Use rem for better scalability */
+    font-weight: 700;
+    line-height: 1.3; /* Line height relative to font size */
+    text-align: left;
+    gap: 0.625rem; /* Relative unit */
+}
+
+/* Additional responsive styles */
+.flex-column-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem; /* Add padding for spacing */
+}
+
+.flex-row-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap; /* Allow wrapping */
+    gap: 1rem; /* Add gap for spacing between items */
+}
+
+/* Responsive media query for smaller screens */
+@media (max-width: 768px) {
+    .chevrons {
+        font-size: 0.875rem; /* Slightly smaller font size on smaller screens */
+    }
+
+    .job-title {
+        font-size: 1.25rem; /* Slightly smaller font size on smaller screens */
+        line-height: 1.2; /* Adjust line height */
+    }
+}
